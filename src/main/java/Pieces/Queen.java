@@ -10,7 +10,8 @@ public class Queen extends Piece {
     }
 
     @Override
-    public void isValidMovement(Coordinate source, Coordinate dest) throws NoPieceMoveException {
+    public boolean isValidMovement(Coordinate source, Coordinate dest) {
+        return false;
     }
 
 }

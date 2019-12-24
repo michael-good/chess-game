@@ -76,4 +76,8 @@ public class Board {
     public void removePiece(int sourceX, int sourceY) {
         squares[sourceX][sourceY].setPiece(null);
     }
+
+    public Square getSquare(Coordinate coordinate) {
+        return squares[coordinate.getX()][coordinate.getY()];
+    }
 }

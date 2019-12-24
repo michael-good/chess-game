@@ -1,10 +1,12 @@
 package Pieces;
 
 import Exceptions.NoPieceMoveException;
+import Game.Board;
 import Game.Coordinate;
 
 public abstract class Piece {
 
+    protected Board board;
     PieceColor color;
 
     public Piece (PieceColor color) {
@@ -19,5 +21,5 @@ public abstract class Piece {
         this.color = color;
     }
 
-    public abstract void isValidMovement(Coordinate source, Coordinate dest) throws NoPieceMoveException;
+    public abstract boolean isValidMovement(Coordinate source, Coordinate dest);
 }
