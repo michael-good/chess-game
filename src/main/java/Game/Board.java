@@ -28,41 +28,41 @@ public class Board {
     }
 
     private void setBlackPieces() {
-        squares[0][0].setPiece(new Rook(PieceColor.BLACK));
-        squares[0][1].setPiece(new Knight(PieceColor.BLACK));
-        squares[0][2].setPiece(new Bishop(PieceColor.BLACK));
-        squares[0][3].setPiece(new Queen(PieceColor.BLACK));
-        squares[0][4].setPiece(new King(PieceColor.BLACK));
-        squares[0][5].setPiece(new Bishop(PieceColor.BLACK));
-        squares[0][6].setPiece(new Knight(PieceColor.BLACK));
-        squares[0][7].setPiece(new Rook(PieceColor.BLACK));
-        squares[1][0].setPiece(new Pawn(PieceColor.BLACK));
-        squares[1][1].setPiece(new Pawn(PieceColor.BLACK));
-        squares[1][2].setPiece(new Pawn(PieceColor.BLACK));
-        squares[1][3].setPiece(new Pawn(PieceColor.BLACK));
-        squares[1][4].setPiece(new Pawn(PieceColor.BLACK));
-        squares[1][5].setPiece(new Pawn(PieceColor.BLACK));
-        squares[1][6].setPiece(new Pawn(PieceColor.BLACK));
-        squares[1][7].setPiece(new Pawn(PieceColor.BLACK));
+        squares[0][0].setPiece(new Rook(PieceColor.BLACK, this));
+        squares[0][1].setPiece(new Knight(PieceColor.BLACK, this));
+        squares[0][2].setPiece(new Bishop(PieceColor.BLACK, this));
+        squares[0][3].setPiece(new Queen(PieceColor.BLACK, this));
+        squares[0][4].setPiece(new King(PieceColor.BLACK, this));
+        squares[0][5].setPiece(new Bishop(PieceColor.BLACK, this));
+        squares[0][6].setPiece(new Knight(PieceColor.BLACK, this));
+        squares[0][7].setPiece(new Rook(PieceColor.BLACK, this));
+        squares[1][0].setPiece(new Pawn(PieceColor.BLACK, this));
+        squares[1][1].setPiece(new Pawn(PieceColor.BLACK, this));
+        squares[1][2].setPiece(new Pawn(PieceColor.BLACK, this));
+        squares[1][3].setPiece(new Pawn(PieceColor.BLACK, this));
+        squares[1][4].setPiece(new Pawn(PieceColor.BLACK, this));
+        squares[1][5].setPiece(new Pawn(PieceColor.BLACK, this));
+        squares[1][6].setPiece(new Pawn(PieceColor.BLACK, this));
+        squares[1][7].setPiece(new Pawn(PieceColor.BLACK, this));
     }
 
     private void setWhitePieces() {
-        squares[7][0].setPiece(new Rook(PieceColor.WHITE));
-        squares[7][1].setPiece(new Knight(PieceColor.WHITE));
-        squares[7][2].setPiece(new Bishop(PieceColor.WHITE));
-        squares[7][3].setPiece(new Queen(PieceColor.WHITE));
-        squares[7][4].setPiece(new King(PieceColor.WHITE));
-        squares[7][5].setPiece(new Bishop(PieceColor.WHITE));
-        squares[7][6].setPiece(new Knight(PieceColor.WHITE));
-        squares[7][7].setPiece(new Rook(PieceColor.WHITE));
-        squares[6][0].setPiece(new Pawn(PieceColor.WHITE));
-        squares[6][1].setPiece(new Pawn(PieceColor.WHITE));
-        squares[6][2].setPiece(new Pawn(PieceColor.WHITE));
-        squares[6][3].setPiece(new Pawn(PieceColor.WHITE));
-        squares[6][4].setPiece(new Pawn(PieceColor.WHITE));
-        squares[6][5].setPiece(new Pawn(PieceColor.WHITE));
-        squares[6][6].setPiece(new Pawn(PieceColor.WHITE));
-        squares[6][7].setPiece(new Pawn(PieceColor.WHITE));
+        squares[7][0].setPiece(new Rook(PieceColor.WHITE, this));
+        squares[7][1].setPiece(new Knight(PieceColor.WHITE, this));
+        squares[7][2].setPiece(new Bishop(PieceColor.WHITE, this));
+        squares[7][3].setPiece(new Queen(PieceColor.WHITE, this));
+        squares[7][4].setPiece(new King(PieceColor.WHITE, this));
+        squares[7][5].setPiece(new Bishop(PieceColor.WHITE, this));
+        squares[7][6].setPiece(new Knight(PieceColor.WHITE, this));
+        squares[7][7].setPiece(new Rook(PieceColor.WHITE, this));
+        squares[6][0].setPiece(new Pawn(PieceColor.WHITE, this));
+        squares[6][1].setPiece(new Pawn(PieceColor.WHITE, this));
+        squares[6][2].setPiece(new Pawn(PieceColor.WHITE, this));
+        squares[6][3].setPiece(new Pawn(PieceColor.WHITE, this));
+        squares[6][4].setPiece(new Pawn(PieceColor.WHITE, this));
+        squares[6][5].setPiece(new Pawn(PieceColor.WHITE, this));
+        squares[6][6].setPiece(new Pawn(PieceColor.WHITE, this));
+        squares[6][7].setPiece(new Pawn(PieceColor.WHITE, this));
     }
 
     public void movePiece(PieceColor color, int sourceX, int sourceY, int destX, int destY) {

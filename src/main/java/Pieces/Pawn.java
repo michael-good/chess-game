@@ -5,8 +5,8 @@ import Game.Coordinate;
 
 public class Pawn extends Piece {
 
-    public Pawn(PieceColor color) {
-        super(color);
+    public Pawn(PieceColor color, Board board) {
+        super(color, board);
     }
 
     @Override
@@ -40,12 +40,15 @@ public class Pawn extends Piece {
         if(Math.abs(dest.getX() - source.getX()) == 1 && Math.abs(dest.getY() - source.getY()) == 1 &&
                 board.getSquare(dest).isOccupied()) {
             if(this.color == PieceColor.BLACK) {
-                return dest.getX() > source.getX();
+                return dest.getX() > source.getX() && board.getSquare(dest).getPiece().getColor() == PieceColor.WHITE;
             }
             if(this.color == PieceColor.WHITE) {
-                return dest.getX() < source.getX();
+                return dest.getX() < source.getX() && board.getSquare(dest).getPiece().getColor() == PieceColor.BLACK;
             }
         }
+
+        // TODO: Change by other piece when crosses the board
+
         // TODO: En passant
         return false;
     }

@@ -1,12 +1,12 @@
 package Pieces;
 
-import Exceptions.NoPieceMoveException;
+import Game.Board;
 import Game.Coordinate;
 
 public class King extends Piece {
 
-    public King(PieceColor color) {
-        super(color);
+    public King(PieceColor color, Board board) {
+        super(color, board);
     }
 
     @Override

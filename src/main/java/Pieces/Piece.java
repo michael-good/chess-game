@@ -9,8 +9,9 @@ public abstract class Piece {
     protected Board board;
     PieceColor color;
 
-    public Piece (PieceColor color) {
+    public Piece (PieceColor color, Board board) {
         this.color = color;
+        this.board = board;
     }
 
     public PieceColor getColor() {

@@ -1,12 +1,13 @@
 package Pieces;
 
 import Exceptions.NoPieceMoveException;
+import Game.Board;
 import Game.Coordinate;
 
 public class Bishop extends Piece {
 
-    public Bishop(PieceColor color) {
-        super(color);
+    public Bishop(PieceColor color, Board board) {
+        super(color, board);
     }
 
     @Override
