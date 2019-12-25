@@ -1,6 +1,5 @@
 package Pieces;
 
-import Exceptions.NoPieceMoveException;
 import Game.Board;
 import Game.Coordinate;
 
@@ -12,18 +11,24 @@ public class Rook extends Piece {
 
     @Override
     public boolean isValidMovement(Coordinate source, Coordinate dest) {
-        /*
-        if(!(row1 == row2 || col1==col2)){
-            String msg = String.format("The movement of the rook from (%d,%d) to (%d,%d) is not legal", row1, col1, row2, col2);
-            throw new NoPieceMoveException(msg);
-        }
-        */
+        int diffFiles = Math.abs(dest.getFile() - source.getFile());
+        int diffRanks = Math.abs(dest.getRank() - source.getRank());
+        if((diffFiles == 0 && diffRanks != 0) || (diffFiles != 0 && diffRanks == 0)) return true;
         return false;
     }
 
     @Override
     public Coordinate[] getPath(Coordinate source, Coordinate dest) {
-        return new Coordinate[]{source, dest};
+        int pathLength = Math.max(Math.abs(dest.getFile() - source.getFile()), Math.abs(dest.getRank() - source.getRank())) + 1;
+        Coordinate[] path = new Coordinate[pathLength];
+        for(int i = 0; i < pathLength; i++) {
+            if(dest.getFile() == source.getFile()) {
+                path[i] = new Coordinate(source.getFile(), source.getRank() + i);
+            } else if(dest.getRank() == source.getRank()) {
+                path[i] = new Coordinate(source.getFile() + i, source.getRank());
+            }
+        }
+        return path;
     }
 
 }

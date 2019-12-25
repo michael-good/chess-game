@@ -20,10 +20,10 @@ public class PawnTest extends TestCase {
     }
 
     @Test
-    public void coordiantesOutOfRangeShouldNotPass() {
+    public void pawnRemainsInSameSquareShouldNotPass() {
         Pawn pawn = new Pawn(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(7, 0);
-        Coordinate dest = new Coordinate(8, 0);
+        Coordinate source = new Coordinate(7, 1);
+        Coordinate dest = new Coordinate(7, 1);
 
         Assertions.assertFalse(pawn.isValidMovement(source, dest));
     }
@@ -31,8 +31,8 @@ public class PawnTest extends TestCase {
     @Test
     public void blackPawnMovesTwoSquaresForwardInFirstMoveShouldPass() {
         Pawn pawn = new Pawn(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(1, 0);
-        Coordinate dest = new Coordinate(3, 0);
+        Coordinate source = new Coordinate(1, 6);
+        Coordinate dest = new Coordinate(1, 4);
 
         Assertions.assertTrue(pawn.isValidMovement(source, dest));
     }
@@ -40,8 +40,8 @@ public class PawnTest extends TestCase {
     @Test
     public void whitePawnMovesTwoSquaresForwardInFirstMoveShouldPass() {
         Pawn pawn = new Pawn(PieceColor.WHITE, board);
-        Coordinate source = new Coordinate(6, 0);
-        Coordinate dest = new Coordinate(4, 0);
+        Coordinate source = new Coordinate(4, 1);
+        Coordinate dest = new Coordinate(4, 3);
 
         Assertions.assertTrue(pawn.isValidMovement(source, dest));
     }
@@ -49,8 +49,8 @@ public class PawnTest extends TestCase {
     @Test
     public void blackPawnMovesOneSquareForwardShouldPass() {
         Pawn pawn = new Pawn(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(4, 0);
-        Coordinate dest = new Coordinate(5, 0);
+        Coordinate source = new Coordinate(4, 6);
+        Coordinate dest = new Coordinate(4, 5);
 
         Assertions.assertTrue(pawn.isValidMovement(source, dest));
     }
@@ -58,8 +58,8 @@ public class PawnTest extends TestCase {
     @Test
     public void whitePawnMovesOneSquareForwardShouldPass() {
         Pawn pawn = new Pawn(PieceColor.WHITE, board);
-        Coordinate source = new Coordinate(5, 0);
-        Coordinate dest = new Coordinate(4, 0);
+        Coordinate source = new Coordinate(5, 1);
+        Coordinate dest = new Coordinate(5, 2);
 
         Assertions.assertTrue(pawn.isValidMovement(source, dest));
     }
@@ -67,7 +67,7 @@ public class PawnTest extends TestCase {
     @Test
     public void pawnMovesToRightShouldNotPass() {
         Pawn pawn = new Pawn(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(6, 0);
+        Coordinate source = new Coordinate(5, 1);
         Coordinate dest = new Coordinate(6, 1);
 
         Assertions.assertFalse(pawn.isValidMovement(source, dest));
@@ -77,7 +77,7 @@ public class PawnTest extends TestCase {
     public void pawnMovesToLeftShouldNotPass() {
         Pawn pawn = new Pawn(PieceColor.BLACK, board);
         Coordinate source = new Coordinate(1, 5);
-        Coordinate dest = new Coordinate(1, 4);
+        Coordinate dest = new Coordinate(0, 5);
 
         Assertions.assertFalse(pawn.isValidMovement(source, dest));
     }
@@ -85,8 +85,8 @@ public class PawnTest extends TestCase {
     @Test
     public void blackPawnMovesBackwardsShouldNotPass() {
         Pawn pawn = new Pawn(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(1, 5);
-        Coordinate dest = new Coordinate(0, 5);
+        Coordinate source = new Coordinate(0, 6);
+        Coordinate dest = new Coordinate(0, 7);
 
         Assertions.assertFalse(pawn.isValidMovement(source, dest));
     }
@@ -95,7 +95,7 @@ public class PawnTest extends TestCase {
     public void whitePawnMovesBackwardsShouldNotPass() {
         Pawn pawn = new Pawn(PieceColor.WHITE, board);
         Coordinate source = new Coordinate(3, 2);
-        Coordinate dest = new Coordinate(4, 2);
+        Coordinate dest = new Coordinate(3, 1);
 
         Assertions.assertFalse(pawn.isValidMovement(source, dest));
     }
@@ -103,8 +103,8 @@ public class PawnTest extends TestCase {
     @Test
     public void blackPawnCapturesFrontRightShouldPass() {
         Pawn pawn = new Pawn(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(4, 3);
-        Coordinate dest = new Coordinate(5, 2);
+        Coordinate source = new Coordinate(1, 6);
+        Coordinate dest = new Coordinate(0, 5);
 
         Assertions.assertTrue(pawn.isValidMovement(source, dest));
     }
@@ -112,8 +112,8 @@ public class PawnTest extends TestCase {
     @Test
     public void whitePawnCapturesFrontRightShouldPass() {
         Pawn pawn = new Pawn(PieceColor.WHITE, board);
-        Coordinate source = new Coordinate(6, 5);
-        Coordinate dest = new Coordinate(5, 6);
+        Coordinate source = new Coordinate(3, 5);
+        Coordinate dest = new Coordinate(2, 6);
 
         Assertions.assertTrue(pawn.isValidMovement(source, dest));
     }
@@ -121,8 +121,8 @@ public class PawnTest extends TestCase {
     @Test
     public void blackPawnCapturesFrontLeftShouldPass() {
         Pawn pawn = new Pawn(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(4, 3);
-        Coordinate dest = new Coordinate(5, 4);
+        Coordinate source = new Coordinate(1, 6);
+        Coordinate dest = new Coordinate(2, 5);
 
         Assertions.assertTrue(pawn.isValidMovement(source, dest));
     }
@@ -130,35 +130,17 @@ public class PawnTest extends TestCase {
     @Test
     public void whitePawnCapturesFrontLeftShouldPass() {
         Pawn pawn = new Pawn(PieceColor.WHITE, board);
-        Coordinate source = new Coordinate(6, 5);
-        Coordinate dest = new Coordinate(5, 4);
+        Coordinate source = new Coordinate(1, 1);
+        Coordinate dest = new Coordinate(0, 2);
 
         Assertions.assertTrue(pawn.isValidMovement(source, dest));
     }
 
     @Test
-    public void blackPawnCapturesPieceOfSameColorShouldNotPass() {
-        Pawn pawn = new Pawn(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(6, 5);
-        Coordinate dest = new Coordinate(5, 4);
-
-        Assertions.assertFalse(pawn.isValidMovement(source, dest));
-    }
-
-    @Test
-    public void whitePawnCapturesPieceOfSameColorShouldNotPass() {
-        Pawn pawn = new Pawn(PieceColor.WHITE, board);
-        Coordinate source = new Coordinate(6, 5);
-        Coordinate dest = new Coordinate(5, 4);
-
-        Assertions.assertFalse(pawn.isValidMovement(source, dest));
-    }
-
-    @Test
     public void pathWhenCapturingShouldBeSourceAndDest() {
         Pawn pawn = new Pawn(PieceColor.WHITE, board);
-        Coordinate source = new Coordinate(6, 5);
-        Coordinate dest = new Coordinate(5, 4);
+        Coordinate source = new Coordinate(1, 1);
+        Coordinate dest = new Coordinate(0, 2);
         board.getSquare(source).setPiece(pawn);
         board.getSquare(dest).setPiece(new Pawn(PieceColor.WHITE, board));
 
@@ -173,7 +155,7 @@ public class PawnTest extends TestCase {
     public void pathWhenNormalMovementShouldHaveTwoElements() {
         Pawn pawn = new Pawn(PieceColor.WHITE, board);
         Coordinate source = new Coordinate(6, 4);
-        Coordinate dest = new Coordinate(5, 4);
+        Coordinate dest = new Coordinate(6, 5);
 
         Coordinate[] path = pawn.getPath(source, dest);
 
@@ -185,13 +167,13 @@ public class PawnTest extends TestCase {
     @Test
     public void whitePawnPathWhenFirstMovementShouldHaveThreeElements() {
         Pawn pawn = new Pawn(PieceColor.WHITE, board);
-        Coordinate source = new Coordinate(6, 4);
-        Coordinate dest = new Coordinate(4, 4);
+        Coordinate source = new Coordinate(1, 1);
+        Coordinate dest = new Coordinate(1, 3);
 
         Coordinate[] path = pawn.getPath(source, dest);
 
         Assertions.assertTrue(path[0].equals(source));
-        Assertions.assertTrue(path[1].equals(new Coordinate(source.getX() - 1, source.getY())));
+        Assertions.assertTrue(path[1].equals(new Coordinate(source.getFile(), source.getRank() + 1)));
         Assertions.assertTrue(path[2].equals(dest));
         Assertions.assertEquals(path.length, 3);
     }
@@ -199,20 +181,20 @@ public class PawnTest extends TestCase {
     @Test
     public void blackPawnPathWhenFirstMovementShouldHaveThreeElements() {
         Pawn pawn = new Pawn(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(1, 4);
-        Coordinate dest = new Coordinate(3, 4);
+        Coordinate source = new Coordinate(1, 6);
+        Coordinate dest = new Coordinate(1, 4);
 
         Coordinate[] path = pawn.getPath(source, dest);
 
         Assertions.assertTrue(path[0].equals(source));
-        Assertions.assertTrue(path[1].equals(new Coordinate(source.getX() + 1, source.getY())));
+        Assertions.assertTrue(path[1].equals(new Coordinate(source.getFile(), source.getRank() - 1)));
         Assertions.assertTrue(path[2].equals(dest));
         Assertions.assertEquals(path.length, 3);
     }
 
     public static TestSuite suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(new PawnTest("coordiantesOutOfRangeShouldNotPass"));
+        suite.addTest(new PawnTest("pawnRemainsInSameSquareShouldNotPass"));
         suite.addTest(new PawnTest("blackPawnMovesTwoSquaresForwardInFirstMoveShouldPass"));
         suite.addTest(new PawnTest("whitePawnMovesTwoSquaresForwardInFirstMoveShouldPass"));
         suite.addTest(new PawnTest("blackPawnMovesOneSquareForwardShouldPass"));

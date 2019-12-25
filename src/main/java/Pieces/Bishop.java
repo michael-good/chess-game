@@ -12,15 +12,24 @@ public class Bishop extends Piece {
 
     @Override
     public boolean isValidMovement(Coordinate source, Coordinate dest){
-        int diffX = Math.abs(dest.getX() - source.getY());
-        int diffY = Math.abs(dest.getY() - source.getY());
-        if(diffX == diffY && !dest.equals(source)) return true;
+        int diffFiles = Math.abs(dest.getFile() - source.getFile());
+        int diffRanks = Math.abs(dest.getRank() - source.getRank());
+        if(diffFiles == diffRanks && !dest.equals(source)) return true;
         return false;
     }
 
     @Override
     public Coordinate[] getPath(Coordinate source, Coordinate dest) {
-        return new Coordinate[]{source, dest};
+        int pathLength = Math.abs(dest.getFile() - source.getFile()) + 1;
+        Coordinate[] path = new Coordinate[pathLength];
+        for(int i = 0; i < pathLength; i++) {
+            if(dest.getFile() == source.getFile()) {
+                path[i] = new Coordinate(source.getFile(), source.getRank() + i);
+            } else if(dest.getRank() == source.getRank()) {
+                path[i] = new Coordinate(source.getFile() + i, source.getRank());
+            }
+        }
+        return path;
     }
 
 }

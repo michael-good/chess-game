@@ -11,37 +11,36 @@ public class Pawn extends Piece {
 
     @Override
     public boolean isValidMovement(Coordinate source, Coordinate dest) {
-        if(dest.getX() < 0 || dest.getX() > 7 || source.equals(dest)) {
-            return false;
-        }
+        if(source.equals(dest)) return false;
+
         // First move
-        if (Math.abs(dest.getX() - source.getX()) == 2 && dest.getY() == source.getY() &&
-                (source.getX() == 1 || source.getX() == 6)) {
+        if (Math.abs(dest.getRank() - source.getRank()) == 2 && dest.getFile() == source.getFile() &&
+                (source.getRank() == 1 || source.getRank() == 6)) {
             if (this.color == PieceColor.BLACK) {
-                return dest.getX() > source.getX();
+                return dest.getRank() < source.getRank();
             }
             if (this.color == PieceColor.WHITE) {
-                return dest.getX() < source.getX();
+                return dest.getRank() > source.getRank();
             }
         }
 
         // Normal move
-        if (Math.abs(dest.getX() - source.getX()) == 1 && dest.getY() == source.getY()) {
+        if (Math.abs(dest.getRank() - source.getRank()) == 1 && dest.getFile() == source.getFile()) {
             if (this.color == PieceColor.BLACK) {
-                return dest.getX() > source.getX();
+                return dest.getRank() < source.getRank();
             }
             if (this.color == PieceColor.WHITE) {
-                return dest.getX() < source.getX();
+                return dest.getRank() > source.getRank();
             }
         }
 
         // Capture move
-        if(Math.abs(dest.getX() - source.getX()) == 1 && Math.abs(dest.getY() - source.getY()) == 1) {
-            if(this.color == PieceColor.BLACK) {
-                return dest.getX() > source.getX();
+        if(Math.abs(dest.getFile() - source.getFile()) == 1 && Math.abs(dest.getRank() - source.getRank()) == 1) {
+            if (this.color == PieceColor.BLACK) {
+                return dest.getRank() < source.getRank();
             }
-            if(this.color == PieceColor.WHITE) {
-                return dest.getX() < source.getX();
+            if (this.color == PieceColor.WHITE) {
+                return dest.getRank() > source.getRank();
             }
         }
 
@@ -53,16 +52,16 @@ public class Pawn extends Piece {
 
     @Override
     public Coordinate[] getPath(Coordinate source, Coordinate dest) {
-        if(source.getY() != dest.getY()) {
+        if(source.getFile() != dest.getFile()) {
             return new Coordinate[]{source, dest};
         } else {
-            int pathLength = Math.abs(dest.getX() - source.getX()) + 1;
+            int pathLength = Math.abs(dest.getRank() - source.getRank()) + 1;
             Coordinate[] path = new Coordinate[pathLength];
             for(int i = 0; i < pathLength; i++) {
                 if(this.color == PieceColor.BLACK) {
-                    path[i] = new Coordinate(source.getX() + i, source.getY());
+                    path[i] = new Coordinate(source.getFile(), source.getRank() - i);
                 } else if(this.color == PieceColor.WHITE) {
-                    path[i] = new Coordinate(source.getX() - i, source.getY());
+                    path[i] = new Coordinate(source.getFile(), source.getRank() + i);
                 }
             }
             return path;

@@ -1,23 +1,23 @@
 package Game;
 
 public class Coordinate {
-    int x;
-    int y;
+    int file;
+    int rank;
 
-    public Coordinate(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Coordinate(int file, int rank) {
+        this.file = file;
+        this.rank = rank;
     }
 
-    public int getX() {
-        return x;
+    public int getFile() {
+        return file;
     }
 
-    public int getY() {
-        return y;
+    public int getRank() {
+        return rank;
     }
 
     public boolean equals(Coordinate coord) {
-        return this.x == coord.getX() && this.y == coord.getY();
+        return this.file == coord.getFile() && this.rank == coord.getRank();
     }
 }
