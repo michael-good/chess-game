@@ -37,7 +37,7 @@ public class BishopTest extends TestCase {
     }
 
     @Test
-    public void whiteBishopMovesForwardRightShouldPass() {
+    public void bishopMovesForwardRightShouldPass() {
         Bishop bishop = new Bishop(PieceColor.WHITE, board);
         Coordinate source = new Coordinate(1, 1);
         Coordinate dest = new Coordinate(3, 3);
@@ -46,7 +46,7 @@ public class BishopTest extends TestCase {
     }
 
     @Test
-    public void whiteBishopMovesForwardLeftShouldPass() {
+    public void bishopMovesForwardLeftShouldPass() {
         Bishop bishop = new Bishop(PieceColor.WHITE, board);
         Coordinate source = new Coordinate(4, 4);
         Coordinate dest = new Coordinate(1, 7);
@@ -55,7 +55,7 @@ public class BishopTest extends TestCase {
     }
 
     @Test
-    public void whiteBishopMovesBackwardRightShouldPass() {
+    public void bishopMovesBackwardRightShouldPass() {
         Bishop bishop = new Bishop(PieceColor.WHITE, board);
         Coordinate source = new Coordinate(3, 4);
         Coordinate dest = new Coordinate(7, 0);
@@ -64,7 +64,7 @@ public class BishopTest extends TestCase {
     }
 
     @Test
-    public void whiteBishopMovesBackwardLeftShouldPass() {
+    public void bishopMovesBackwardLeftShouldPass() {
         Bishop bishop = new Bishop(PieceColor.WHITE, board);
         Coordinate source = new Coordinate(3, 4);
         Coordinate dest = new Coordinate(0, 1);
@@ -73,44 +73,22 @@ public class BishopTest extends TestCase {
     }
 
     @Test
-    public void blackBishopMovesForwardRightShouldPass() {
-        Bishop bishop = new Bishop(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(3, 4);
-        Coordinate dest = new Coordinate(0, 1);
-
-        Assertions.assertTrue(bishop.isValidMovement(source,dest));
-    }
-
-    @Test
-    public void blackBishopMovesForwardLeftShouldPass() {
+    public void bishopPathMovingForwarLeftShouldHaveThreeElements() {
         Bishop bishop = new Bishop(PieceColor.BLACK, board);
         Coordinate source = new Coordinate(3, 3);
-        Coordinate dest = new Coordinate(6, 0);
+        Coordinate dest = new Coordinate(1, 5);
 
-        Assertions.assertTrue(bishop.isValidMovement(source,dest));
+        Coordinate[] path = bishop.getPath(source, dest);
+
+        Assertions.assertTrue(path[0].equals(source));
+        Assertions.assertTrue(path[1].equals(new Coordinate(2, 4)));
+        Assertions.assertTrue(path[2].equals(dest));
+        Assertions.assertEquals(path.length, 3);
     }
 
     @Test
-    public void blackBishopMovesBackwardRightShouldPass() {
-        Bishop bishop = new Bishop(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(5, 3);
-        Coordinate dest = new Coordinate(2, 6);
-
-        Assertions.assertTrue(bishop.isValidMovement(source,dest));
-    }
-
-    @Test
-    public void blackBishopMovesBackwardLeftShouldPass() {
-        Bishop bishop = new Bishop(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(5, 3);
-        Coordinate dest = new Coordinate(7, 1);
-
-        Assertions.assertTrue(bishop.isValidMovement(source,dest));
-    }
-
-    @Test
-    public void blackBishopPathShouldHaveThreeElements() {
-        Bishop bishop = new Bishop(PieceColor.BLACK, board);
+    public void bishopPathMovingForwardRightShouldHaveThreeElements() {
+        Bishop bishop = new Bishop(PieceColor.WHITE, board);
         Coordinate source = new Coordinate(3, 3);
         Coordinate dest = new Coordinate(5, 5);
 
@@ -123,16 +101,30 @@ public class BishopTest extends TestCase {
     }
 
     @Test
-    public void whiteBishopPathShouldHaveThreeElements() {
+    public void bishopPathMovingBackwardLeftShouldHaveThreeElements() {
         Bishop bishop = new Bishop(PieceColor.WHITE, board);
-        Coordinate source = new Coordinate(4, 5);
-        Coordinate dest = new Coordinate(2, 3);
+        Coordinate source = new Coordinate(3, 3);
+        Coordinate dest = new Coordinate(1, 1);
 
         Coordinate[] path = bishop.getPath(source, dest);
 
-        Assertions.assertTrue(path[0].equals(dest));
-        Assertions.assertTrue(path[1].equals(new Coordinate(3, 4)));
-        Assertions.assertTrue(path[2].equals(source));
+        Assertions.assertTrue(path[0].equals(source));
+        Assertions.assertTrue(path[1].equals(new Coordinate(2, 2)));
+        Assertions.assertTrue(path[2].equals(dest));
+        Assertions.assertEquals(path.length, 3);
+    }
+
+    @Test
+    public void bishopPathMovingBackwardRightShouldHaveThreeElements() {
+        Bishop bishop = new Bishop(PieceColor.WHITE, board);
+        Coordinate source = new Coordinate(3, 3);
+        Coordinate dest = new Coordinate(5, 1);
+
+        Coordinate[] path = bishop.getPath(source, dest);
+
+        Assertions.assertTrue(path[0].equals(source));
+        Assertions.assertTrue(path[1].equals(new Coordinate(4, 2)));
+        Assertions.assertTrue(path[2].equals(dest));
         Assertions.assertEquals(path.length, 3);
     }
 
@@ -140,16 +132,14 @@ public class BishopTest extends TestCase {
         TestSuite suite = new TestSuite();
         suite.addTest(new BishopTest("bishopMovesToSourceWhichShouldNotPass"));
         suite.addTest(new BishopTest("bishopMovesToNotValidSquareShouldNotPass"));
-        suite.addTest(new BishopTest("whiteBishopMovesForwardRightShouldPass"));
-        suite.addTest(new BishopTest("whiteBishopMovesForwardLeftShouldPass"));
-        suite.addTest(new BishopTest("whiteBishopMovesBackwardRightShouldPass"));
-        suite.addTest(new BishopTest("whiteBishopMovesBackwardLeftShouldPass"));
-        suite.addTest(new BishopTest("blackBishopMovesForwardRightShouldPass"));
-        suite.addTest(new BishopTest("blackBishopMovesForwardLeftShouldPass"));
-        suite.addTest(new BishopTest("blackBishopMovesBackwardRightShouldPass"));
-        suite.addTest(new BishopTest("blackBishopMovesBackwardLeftShouldPass"));
-        suite.addTest(new BishopTest("blackBishopPathShouldHaveThreeElements"));
-        suite.addTest(new BishopTest("whiteBishopPathShouldHaveThreeElements"));
+        suite.addTest(new BishopTest("bishopMovesForwardRightShouldPass"));
+        suite.addTest(new BishopTest("bishopMovesForwardLeftShouldPass"));
+        suite.addTest(new BishopTest("bishopMovesBackwardRightShouldPass"));
+        suite.addTest(new BishopTest("bishopMovesBackwardLeftShouldPass"));
+        suite.addTest(new BishopTest("bishopPathMovingForwarLeftShouldHaveThreeElements"));
+        suite.addTest(new BishopTest("bishopPathMovingForwardRightShouldHaveThreeElements"));
+        suite.addTest(new BishopTest("bishopPathMovingBackwardLeftShouldHaveThreeElements"));
+        suite.addTest(new BishopTest("bishopPathMovingBackwardRightShouldHaveThreeElements"));
 
         return suite;
     }

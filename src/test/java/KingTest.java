@@ -38,19 +38,73 @@ public class KingTest extends TestCase {
     }
 
     @Test
-    public void kingMovesToValidCellDiagonallyShouldPass() {
+    public void kingMovesForwardShouldPass() {
         King king = new King(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(0, 4);
-        Coordinate dest = new Coordinate(1, 5);
+        Coordinate source = new Coordinate(4, 0);
+        Coordinate dest = new Coordinate(4, 1);
 
         Assertions.assertTrue(king.isValidMovement(source,dest));
     }
 
     @Test
-    public void kingMovesToValidLateralCellShouldPass() {
+    public void kingMovesForwardLeftShouldPass() {
         King king = new King(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(0, 4);
-        Coordinate dest = new Coordinate(0, 5);
+        Coordinate source = new Coordinate(4, 0);
+        Coordinate dest = new Coordinate(3, 1);
+
+        Assertions.assertTrue(king.isValidMovement(source,dest));
+    }
+
+    @Test
+    public void kingMovesForwardRightShouldPass() {
+        King king = new King(PieceColor.BLACK, board);
+        Coordinate source = new Coordinate(4, 0);
+        Coordinate dest = new Coordinate(5, 1);
+
+        Assertions.assertTrue(king.isValidMovement(source,dest));
+    }
+
+    @Test
+    public void kingMovesLeftShouldPass() {
+        King king = new King(PieceColor.BLACK, board);
+        Coordinate source = new Coordinate(4, 0);
+        Coordinate dest = new Coordinate(3, 0);
+
+        Assertions.assertTrue(king.isValidMovement(source,dest));
+    }
+
+    @Test
+    public void kingMovesRightShouldPass() {
+        King king = new King(PieceColor.BLACK, board);
+        Coordinate source = new Coordinate(4, 0);
+        Coordinate dest = new Coordinate(5, 0);
+
+        Assertions.assertTrue(king.isValidMovement(source,dest));
+    }
+
+    @Test
+    public void kingMovesBackwardShouldPass() {
+        King king = new King(PieceColor.BLACK, board);
+        Coordinate source = new Coordinate(4, 7);
+        Coordinate dest = new Coordinate(4, 6);
+
+        Assertions.assertTrue(king.isValidMovement(source,dest));
+    }
+
+    @Test
+    public void kingMovesBackwardLeftShouldPass() {
+        King king = new King(PieceColor.BLACK, board);
+        Coordinate source = new Coordinate(4, 7);
+        Coordinate dest = new Coordinate(3, 6);
+
+        Assertions.assertTrue(king.isValidMovement(source,dest));
+    }
+
+    @Test
+    public void kingMovesBackwardRightShouldPass() {
+        King king = new King(PieceColor.BLACK, board);
+        Coordinate source = new Coordinate(4, 7);
+        Coordinate dest = new Coordinate(5, 6);
 
         Assertions.assertTrue(king.isValidMovement(source,dest));
     }
@@ -72,8 +126,14 @@ public class KingTest extends TestCase {
         TestSuite suite = new TestSuite();
         suite.addTest(new KingTest("kingMovesToSourceWhichShouldNotPass"));
         suite.addTest(new KingTest("kingMovesToNotValidCellShouldNotPass"));
-        suite.addTest(new KingTest("kingMovesToValidCellDiagonallyShouldPass"));
-        suite.addTest(new KingTest("kingMovesToValidLateralCellShouldPass"));
+        suite.addTest(new KingTest("kingMovesForwardShouldPass"));
+        suite.addTest(new KingTest("kingMovesForwardLeftShouldPass"));
+        suite.addTest(new KingTest("kingMovesForwardRightShouldPass"));
+        suite.addTest(new KingTest("kingMovesLeftShouldPass"));
+        suite.addTest(new KingTest("kingMovesRightShouldPass"));
+        suite.addTest(new KingTest("kingMovesBackwardShouldPass"));
+        suite.addTest(new KingTest("kingMovesBackwardLeftShouldPass"));
+        suite.addTest(new KingTest("kingMovesBackwardRightShouldPass"));
         suite.addTest(new KingTest("kingPathWhenMovementShouldHaveTwoElementsSourceAndDest"));
         return suite;
     }
