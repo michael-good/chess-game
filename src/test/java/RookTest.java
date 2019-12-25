@@ -3,10 +3,9 @@ import Game.Board;
 import Game.Coordinate;
 import Pieces.Rook;
 import Pieces.PieceColor;
-import Pieces.Rook;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class RookTest extends TestCase {

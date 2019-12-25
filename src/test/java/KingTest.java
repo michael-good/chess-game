@@ -2,11 +2,10 @@
 import Game.Board;
 import Game.Coordinate;
 import Pieces.King;
-import Pieces.Knight;
 import Pieces.PieceColor;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class KingTest extends TestCase {
