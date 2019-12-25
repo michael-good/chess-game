@@ -23,11 +23,8 @@ public class Bishop extends Piece {
         int pathLength = Math.abs(dest.getFile() - source.getFile()) + 1;
         Coordinate[] path = new Coordinate[pathLength];
         for(int i = 0; i < pathLength; i++) {
-            if(dest.getFile() == source.getFile()) {
-                path[i] = new Coordinate(source.getFile(), source.getRank() + i);
-            } else if(dest.getRank() == source.getRank()) {
-                path[i] = new Coordinate(source.getFile() + i, source.getRank());
-            }
+            path[i] = new Coordinate(Math.min(dest.getFile() + i, source.getFile() + i),
+                                     Math.min(dest.getRank() + i, source.getRank() + i));
         }
         return path;
     }

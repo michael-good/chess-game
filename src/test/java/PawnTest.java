@@ -186,9 +186,9 @@ public class PawnTest extends TestCase {
 
         Coordinate[] path = pawn.getPath(source, dest);
 
-        Assertions.assertTrue(path[0].equals(source));
+        Assertions.assertTrue(path[0].equals(dest));
         Assertions.assertTrue(path[1].equals(new Coordinate(source.getFile(), source.getRank() - 1)));
-        Assertions.assertTrue(path[2].equals(dest));
+        Assertions.assertTrue(path[2].equals(source));
         Assertions.assertEquals(path.length, 3);
     }
 

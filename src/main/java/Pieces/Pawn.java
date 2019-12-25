@@ -58,11 +58,7 @@ public class Pawn extends Piece {
             int pathLength = Math.abs(dest.getRank() - source.getRank()) + 1;
             Coordinate[] path = new Coordinate[pathLength];
             for(int i = 0; i < pathLength; i++) {
-                if(this.color == PieceColor.BLACK) {
-                    path[i] = new Coordinate(source.getFile(), source.getRank() - i);
-                } else if(this.color == PieceColor.WHITE) {
-                    path[i] = new Coordinate(source.getFile(), source.getRank() + i);
-                }
+                path[i] = new Coordinate(source.getFile(), Math.min(dest.getRank(), source.getRank()) + i);
             }
             return path;
         }

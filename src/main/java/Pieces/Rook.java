@@ -23,9 +23,9 @@ public class Rook extends Piece {
         Coordinate[] path = new Coordinate[pathLength];
         for(int i = 0; i < pathLength; i++) {
             if(dest.getFile() == source.getFile()) {
-                path[i] = new Coordinate(source.getFile(), source.getRank() + i);
+                path[i] = new Coordinate(source.getFile(), Math.min(dest.getRank(), source.getRank()) + i);
             } else if(dest.getRank() == source.getRank()) {
-                path[i] = new Coordinate(source.getFile() + i, source.getRank());
+                path[i] = new Coordinate(Math.min(dest.getRank(), source.getFile()) + i, source.getRank());
             }
         }
         return path;
