@@ -1,6 +1,5 @@
 package Pieces;
 
-import Exceptions.NoPieceMoveException;
 import Game.Board;
 import Game.Coordinate;
 
@@ -12,7 +11,9 @@ public class Knight extends Piece {
 
     @Override
     public boolean isValidMovement(Coordinate source, Coordinate dest) {
-        //if(source.equals(dest)) return false;
+        if(board.getSquare(dest).isOccupied() &&
+                this.color.equals(board.getSquare(dest).getPiece().getColor()))
+            return false;
         int diffX = Math.abs(dest.getX() - source.getX());
         int diffY = Math.abs(dest.getY() - source.getY());
         if(diffX + diffY == 3 && diffX != 0 && diffY != 0) return true;

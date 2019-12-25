@@ -15,7 +15,7 @@ public class KnightTest extends TestCase {
     public KnightTest(String str) {
         super(str);
         board = new Board();
-        board.initializeBoard();
+        board.resetBoard();
     }
 
     @Test
@@ -46,6 +46,18 @@ public class KnightTest extends TestCase {
     }
 
     @Test
+    public void knightMovesToLocationOfPieceOfSameColorShouldNotPass() {
+        Knight knight = new Knight(PieceColor.BLACK, board);
+        Knight knightBlack = new Knight(PieceColor.BLACK, board);
+        Coordinate source = new Coordinate(0, 1);
+        Coordinate dest = new Coordinate(2, 2);
+        board.getSquare(source).setPiece(knight);
+        board.getSquare(dest).setPiece(knightBlack);
+
+        Assertions.assertFalse(knight.isValidMovement(source,dest));
+    }
+
+    @Test
     public void knightPathWhenMovementShouldHaveTwoElementsSourceAndDest() {
         Knight knight = new Knight(PieceColor.BLACK, board);
         Coordinate source = new Coordinate(0, 1);
@@ -63,6 +75,7 @@ public class KnightTest extends TestCase {
         suite.addTest(new KnightTest("knightMovesToSourceWhichShouldNotPass"));
         suite.addTest(new KnightTest("knightMovesToNotValidCellShouldNotPass"));
         suite.addTest(new KnightTest("knightMovesToValidCellShouldPass"));
+        suite.addTest(new KnightTest("knightMovesToLocationOfPieceOfSameColorShouldNotPass"));
         suite.addTest(new KnightTest("knightPathWhenMovementShouldHaveTwoElementsSourceAndDest"));
         return suite;
     }

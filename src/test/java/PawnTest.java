@@ -15,7 +15,8 @@ public class PawnTest extends TestCase {
     public PawnTest(String str) {
         super(str);
         board = new Board();
-        board.initializeBoard();
+        board.resetBoard();
+
     }
 
     @Test

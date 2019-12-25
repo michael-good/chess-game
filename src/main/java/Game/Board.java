@@ -65,6 +65,10 @@ public class Board {
         squares[6][7].setPiece(new Pawn(PieceColor.WHITE, this));
     }
 
+    public void resetBoard() {
+        initializeBoardSquares();
+    }
+
     public void movePiece(PieceColor color, int sourceX, int sourceY, int destX, int destY) {
 
     }

@@ -11,6 +11,12 @@ public class King extends Piece {
 
     @Override
     public boolean isValidMovement(Coordinate source, Coordinate dest) {
+        if(board.getSquare(dest).isOccupied() &&
+                this.color.equals(board.getSquare(dest).getPiece().getColor()))
+            return false;
+        int diffX = Math.abs(dest.getX() - source.getX());
+        int diffY = Math.abs(dest.getY() - source.getY());
+        if(diffX <= 1 && diffY <= 1 && !dest.equals(source)) return true;
         return false;
     }
 
