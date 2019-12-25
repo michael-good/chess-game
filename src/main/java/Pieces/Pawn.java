@@ -14,40 +14,34 @@ public class Pawn extends Piece {
         if(dest.getX() < 0 || dest.getX() > 7 || source.equals(dest)) {
             return false;
         }
-
-        if(!board.getSquare(dest).isOccupied()) {
-            // First move
-            if (Math.abs(dest.getX() - source.getX()) == 2 && dest.getY() == source.getY() &&
-                    (source.getX() == 1 || source.getX() == 6)) {
-                if (this.color == PieceColor.BLACK &&
-                        !board.getSquare(new Coordinate(source.getX() + 1, source.getY())).isOccupied()) {
-                    return dest.getX() > source.getX();
-                }
-                if (this.color == PieceColor.WHITE &&
-                        !board.getSquare(new Coordinate(source.getX() - 1, source.getY())).isOccupied()) {
-                    return dest.getX() < source.getX();
-                }
+        // First move
+        if (Math.abs(dest.getX() - source.getX()) == 2 && dest.getY() == source.getY() &&
+                (source.getX() == 1 || source.getX() == 6)) {
+            if (this.color == PieceColor.BLACK) {
+                return dest.getX() > source.getX();
             }
+            if (this.color == PieceColor.WHITE) {
+                return dest.getX() < source.getX();
+            }
+        }
 
-            // Normal move
-            if (Math.abs(dest.getX() - source.getX()) == 1 && dest.getY() == source.getY()) {
-                if (this.color == PieceColor.BLACK) {
-                    return dest.getX() > source.getX();
-                }
-                if (this.color == PieceColor.WHITE) {
-                    return dest.getX() < source.getX();
-                }
+        // Normal move
+        if (Math.abs(dest.getX() - source.getX()) == 1 && dest.getY() == source.getY()) {
+            if (this.color == PieceColor.BLACK) {
+                return dest.getX() > source.getX();
+            }
+            if (this.color == PieceColor.WHITE) {
+                return dest.getX() < source.getX();
             }
         }
 
         // Capture move
-        if(Math.abs(dest.getX() - source.getX()) == 1 && Math.abs(dest.getY() - source.getY()) == 1 &&
-                board.getSquare(dest).isOccupied()) {
+        if(Math.abs(dest.getX() - source.getX()) == 1 && Math.abs(dest.getY() - source.getY()) == 1) {
             if(this.color == PieceColor.BLACK) {
-                return dest.getX() > source.getX() && board.getSquare(dest).getPiece().getColor() == PieceColor.WHITE;
+                return dest.getX() > source.getX();
             }
             if(this.color == PieceColor.WHITE) {
-                return dest.getX() < source.getX() && board.getSquare(dest).getPiece().getColor() == PieceColor.BLACK;
+                return dest.getX() < source.getX();
             }
         }
 

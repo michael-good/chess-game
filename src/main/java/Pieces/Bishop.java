@@ -12,6 +12,9 @@ public class Bishop extends Piece {
 
     @Override
     public boolean isValidMovement(Coordinate source, Coordinate dest){
+        int diffX = Math.abs(dest.getX() - source.getY());
+        int diffY = Math.abs(dest.getY() - source.getY());
+        if(diffX == diffY && !dest.equals(source)) return true;
         return false;
     }
 

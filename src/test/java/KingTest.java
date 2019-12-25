@@ -56,18 +56,6 @@ public class KingTest extends TestCase {
     }
 
     @Test
-    public void kingMovesToLocationOfPieceOfSameColorShouldNotPass() {
-        King king = new King(PieceColor.BLACK, board);
-        King kingBlack = new King(PieceColor.BLACK, board);
-        Coordinate source = new Coordinate(0, 1);
-        Coordinate dest = new Coordinate(2, 2);
-        board.getSquare(source).setPiece(king);
-        board.getSquare(dest).setPiece(kingBlack);
-
-        Assertions.assertFalse(king.isValidMovement(source,dest));
-    }
-
-    @Test
     public void kingPathWhenMovementShouldHaveTwoElementsSourceAndDest() {
         King king = new King(PieceColor.BLACK, board);
         Coordinate source = new Coordinate(0, 1);
@@ -86,7 +74,6 @@ public class KingTest extends TestCase {
         suite.addTest(new KingTest("kingMovesToNotValidCellShouldNotPass"));
         suite.addTest(new KingTest("kingMovesToValidCellDiagonallyShouldPass"));
         suite.addTest(new KingTest("kingMovesToValidLateralCellShouldPass"));
-        suite.addTest(new KingTest("kingMovesToLocationOfPieceOfSameColorShouldNotPass"));
         suite.addTest(new KingTest("kingPathWhenMovementShouldHaveTwoElementsSourceAndDest"));
         return suite;
     }
