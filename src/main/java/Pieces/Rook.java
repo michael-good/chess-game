@@ -21,4 +21,9 @@ public class Rook extends Piece {
         return false;
     }
 
+    @Override
+    public Coordinate[] getPath(Coordinate source, Coordinate dest) {
+        return new Coordinate[]{source, dest};
+    }
+
 }

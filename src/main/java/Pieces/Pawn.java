@@ -57,6 +57,7 @@ public class Pawn extends Piece {
         return false;
     }
 
+    @Override
     public Coordinate[] getPath(Coordinate source, Coordinate dest) {
         if(source.getY() != dest.getY()) {
             return new Coordinate[]{source, dest};

@@ -199,6 +199,48 @@ public class PawnTest extends TestCase {
 
         Assertions.assertTrue(path[0].equals(source));
         Assertions.assertTrue(path[1].equals(dest));
+        Assertions.assertEquals(path.length, 2);
+    }
+
+    @Test
+    public void pathWhenNormalMovementShouldHaveTwoElements() {
+        Pawn pawn = new Pawn(PieceColor.WHITE, board);
+        Coordinate source = new Coordinate(6, 4);
+        Coordinate dest = new Coordinate(5, 4);
+
+        Coordinate[] path = pawn.getPath(source, dest);
+
+        Assertions.assertTrue(path[0].equals(source));
+        Assertions.assertTrue(path[1].equals(dest));
+        Assertions.assertEquals(path.length, 2);
+    }
+
+    @Test
+    public void whitePawnPathWhenFirstMovementShouldHaveThreeElements() {
+        Pawn pawn = new Pawn(PieceColor.WHITE, board);
+        Coordinate source = new Coordinate(6, 4);
+        Coordinate dest = new Coordinate(4, 4);
+
+        Coordinate[] path = pawn.getPath(source, dest);
+
+        Assertions.assertTrue(path[0].equals(source));
+        Assertions.assertTrue(path[1].equals(new Coordinate(source.getX() - 1, source.getY())));
+        Assertions.assertTrue(path[2].equals(dest));
+        Assertions.assertEquals(path.length, 3);
+    }
+
+    @Test
+    public void blackPawnPathWhenFirstMovementShouldHaveThreeElements() {
+        Pawn pawn = new Pawn(PieceColor.BLACK, board);
+        Coordinate source = new Coordinate(1, 4);
+        Coordinate dest = new Coordinate(3, 4);
+
+        Coordinate[] path = pawn.getPath(source, dest);
+
+        Assertions.assertTrue(path[0].equals(source));
+        Assertions.assertTrue(path[1].equals(new Coordinate(source.getX() + 1, source.getY())));
+        Assertions.assertTrue(path[2].equals(dest));
+        Assertions.assertEquals(path.length, 3);
     }
 
     public static TestSuite suite() {
@@ -221,6 +263,9 @@ public class PawnTest extends TestCase {
         suite.addTest(new PawnTest("blackPawnCapturesPieceOfSameColorShouldNotPass"));
         suite.addTest(new PawnTest("whitePawnCapturesPieceOfSameColorShouldNotPass"));
         suite.addTest(new PawnTest("pathWhenCapturingShouldBeSourceAndDest"));
+        suite.addTest(new PawnTest("pathWhenNormalMovementShouldHaveTwoElements"));
+        suite.addTest(new PawnTest("whitePawnPathWhenFirstMovementShouldHaveThreeElements"));
+        suite.addTest(new PawnTest("blackPawnPathWhenFirstMovementShouldHaveThreeElements"));
         return suite;
     }
 }

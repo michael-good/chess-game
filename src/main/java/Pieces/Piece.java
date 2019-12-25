@@ -23,4 +23,5 @@ public abstract class Piece {
     }
 
     public abstract boolean isValidMovement(Coordinate source, Coordinate dest);
+    public abstract Coordinate[] getPath(Coordinate source, Coordinate dest);
 }
