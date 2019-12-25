@@ -35,7 +35,4 @@ public class Square {
         return coordinate;
     }
 
-    public boolean equals(Coordinate coord) {
-        return this.coordinate.getX() == coord.getX() && this.coordinate.getY() == coord.getY();
-    }
 }

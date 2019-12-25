@@ -7,7 +7,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 
 public class PawnTest extends TestCase {
 
@@ -44,6 +43,28 @@ public class PawnTest extends TestCase {
         Coordinate dest = new Coordinate(4, 0);
 
         Assertions.assertTrue(pawn.isValidMovement(source, dest));
+    }
+
+    @Test
+    public void blackPawnMovesTwoSquaresForwardInFirstMoveWithPieceInFrontShouldNotPass() {
+        Pawn pawnBlack = new Pawn(PieceColor.BLACK, board);
+        Coordinate source = new Coordinate(1, 0);
+        Coordinate dest = new Coordinate(3, 0);
+        Pawn pawnWhite = new Pawn(PieceColor.WHITE, board);
+        board.getSquare(new Coordinate(2, 0)).setPiece(pawnWhite);
+
+        Assertions.assertFalse(pawnBlack.isValidMovement(source, dest));
+    }
+
+    @Test
+    public void whitePawnMovesTwoSquaresForwardInFirstMoveWithPieceInFrontShouldNotPass() {
+        Pawn pawnBlack = new Pawn(PieceColor.WHITE, board);
+        Coordinate source = new Coordinate(6, 0);
+        Coordinate dest = new Coordinate(4, 0);
+        Pawn pawnWhite = new Pawn(PieceColor.BLACK, board);
+        board.getSquare(new Coordinate(5, 0)).setPiece(pawnWhite);
+
+        Assertions.assertFalse(pawnBlack.isValidMovement(source, dest));
     }
 
     @Test
@@ -166,11 +187,27 @@ public class PawnTest extends TestCase {
         Assertions.assertFalse(pawn.isValidMovement(source, dest));
     }
 
+    @Test
+    public void pathWhenCapturingShouldBeSourceAndDest() {
+        Pawn pawn = new Pawn(PieceColor.WHITE, board);
+        Coordinate source = new Coordinate(6, 5);
+        Coordinate dest = new Coordinate(5, 4);
+        board.getSquare(source).setPiece(pawn);
+        board.getSquare(dest).setPiece(new Pawn(PieceColor.WHITE, board));
+
+        Coordinate[] path = pawn.getPath(source, dest);
+
+        Assertions.assertTrue(path[0].equals(source));
+        Assertions.assertTrue(path[1].equals(dest));
+    }
+
     public static TestSuite suite() {
         TestSuite suite = new TestSuite();
         suite.addTest(new PawnTest("coordiantesOutOfRangeShouldNotPass"));
         suite.addTest(new PawnTest("blackPawnMovesTwoSquaresForwardInFirstMoveShouldPass"));
         suite.addTest(new PawnTest("whitePawnMovesTwoSquaresForwardInFirstMoveShouldPass"));
+        suite.addTest(new PawnTest("blackPawnMovesTwoSquaresForwardInFirstMoveWithPieceInFrontShouldNotPass"));
+        suite.addTest(new PawnTest("whitePawnMovesTwoSquaresForwardInFirstMoveWithPieceInFrontShouldNotPass"));
         suite.addTest(new PawnTest("blackPawnMovesOneSquareForwardShouldPass"));
         suite.addTest(new PawnTest("whitePawnMovesOneSquareForwardShouldPass"));
         suite.addTest(new PawnTest("pawnMovesToRightShouldNotPass"));
@@ -183,6 +220,7 @@ public class PawnTest extends TestCase {
         suite.addTest(new PawnTest("whitePawnCapturesFrontLeftShouldPass"));
         suite.addTest(new PawnTest("blackPawnCapturesPieceOfSameColorShouldNotPass"));
         suite.addTest(new PawnTest("whitePawnCapturesPieceOfSameColorShouldNotPass"));
+        suite.addTest(new PawnTest("pathWhenCapturingShouldBeSourceAndDest"));
         return suite;
     }
 }

@@ -16,4 +16,8 @@ public class Coordinate {
     public int getY() {
         return y;
     }
+
+    public boolean equals(Coordinate coord) {
+        return this.x == coord.getX() && this.y == coord.getY();
+    }
 }

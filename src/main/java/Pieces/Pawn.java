@@ -15,24 +15,28 @@ public class Pawn extends Piece {
             return false;
         }
 
-        // First move
-        if(Math.abs(dest.getX() - source.getX()) == 2 && dest.getY() == source.getY() &&
-                (source.getX() == 1 || source.getX() == 6)) {
-            if(this.color == PieceColor.BLACK) {
-                return dest.getX() > source.getX();
+        if(!board.getSquare(dest).isOccupied()) {
+            // First move
+            if (Math.abs(dest.getX() - source.getX()) == 2 && dest.getY() == source.getY() &&
+                    (source.getX() == 1 || source.getX() == 6)) {
+                if (this.color == PieceColor.BLACK &&
+                        !board.getSquare(new Coordinate(source.getX() + 1, source.getY())).isOccupied()) {
+                    return dest.getX() > source.getX();
+                }
+                if (this.color == PieceColor.WHITE &&
+                        !board.getSquare(new Coordinate(source.getX() - 1, source.getY())).isOccupied()) {
+                    return dest.getX() < source.getX();
+                }
             }
-            if(this.color == PieceColor.WHITE) {
-                return dest.getX() < source.getX();
-            }
-        }
 
-        // Normal move
-        if(Math.abs(dest.getX() - source.getX()) == 1 && dest.getY() == source.getY()) {
-            if(this.color == PieceColor.BLACK) {
-                return dest.getX() > source.getX();
-            }
-            if(this.color == PieceColor.WHITE) {
-                return dest.getX() < source.getX();
+            // Normal move
+            if (Math.abs(dest.getX() - source.getX()) == 1 && dest.getY() == source.getY()) {
+                if (this.color == PieceColor.BLACK) {
+                    return dest.getX() > source.getX();
+                }
+                if (this.color == PieceColor.WHITE) {
+                    return dest.getX() < source.getX();
+                }
             }
         }
 
@@ -47,10 +51,27 @@ public class Pawn extends Piece {
             }
         }
 
-        // TODO: Change by other piece when crosses the board
+        // TODO: Promotion
 
         // TODO: En passant
         return false;
+    }
+
+    public Coordinate[] getPath(Coordinate source, Coordinate dest) {
+        if(source.getY() != dest.getY()) {
+            return new Coordinate[]{source, dest};
+        } else {
+            int pathLength = Math.abs(dest.getX() - source.getX()) + 1;
+            Coordinate[] path = new Coordinate[pathLength];
+            for(int i = 0; i < pathLength; i++) {
+                if(this.color == PieceColor.BLACK) {
+                    path[i] = new Coordinate(source.getX() + i, source.getY());
+                } else if(this.color == PieceColor.WHITE) {
+                    path[i] = new Coordinate(source.getX() - i, source.getY());
+                }
+            }
+            return path;
+        }
     }
 
 }
