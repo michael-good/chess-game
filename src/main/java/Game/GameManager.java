@@ -17,6 +17,7 @@ public class GameManager {
 
     public void movePiece(Coordinate source, Coordinate dest) throws InvalidMoveException {
         Piece sourcePiece = game.getBoard().getSquare(source).getPiece();
+        Piece destPiece = game.getBoard().getSquare(dest).getPiece();
 
         // Check source is valid
         if(sourcePiece == null)
@@ -26,17 +27,33 @@ public class GameManager {
 
         // Check if the movement is valid
         boolean isValidMovement = sourcePiece.isValidMovement(source, dest);
-        Coordinate[] path = sourcePiece.getPath(source, dest);
-        for(Coordinate coord : path) {
-            if(game.getBoard().getSquare(coord).isOccupied() &&
-                    !game.getBoard().getSquare(coord).getPiece().equals(sourcePiece)) {
-                throw new InvalidMoveException("Wrong move... Please, try again");
+        boolean isCapture = false;
+
+        // Check if is capture
+        if(destPiece != null) {
+            if (sourcePiece.getColor() != destPiece.getColor()) {
+                isCapture = true;
             }
         }
 
+        // Check if path is free
+        Coordinate[] path = sourcePiece.getPath(source, dest);
+        for(Coordinate coord : path) {
+            if(game.getBoard().getSquare(coord).isOccupied()) {
+                if (!(game.getBoard().getSquare(coord).getPiece().equals(sourcePiece) ||
+                        game.getBoard().getSquare(coord).getPiece().equals(destPiece))) {
+                    throw new InvalidMoveException("Wrong move... Please, try again");
+                }
+            }
+        }
+
+        // Make the move
         if(isValidMovement) {
             game.getBoard().getSquare(source).releaseSquare();
-            if(!game.getBoard().getSquare(dest).isOccupied())
+            if(isCapture) {
+                game.getBoard().getSquare(dest).releaseSquare();
+                game.getBoard().getSquare(dest).setPiece(sourcePiece);
+            } else if(!game.getBoard().getSquare(dest).isOccupied())
                 game.getBoard().getSquare(dest).setPiece(sourcePiece);
         } else {
             throw new InvalidMoveException("Movement is not valid for the selected piece... Please, try again");

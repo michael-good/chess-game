@@ -86,10 +86,16 @@ public class Board {
         for (int y = 7; y >= 0; y--) {
             System.out.print(Integer.toString(y + 1) + " ");
             for(int x = 0; x < 8; x++) {
-                System.out.print("|");
-                System.out.print(" " + squares[x][y].getPieceString() + " ");
+                System.out.print(ConsoleColors.RESET.value + "|" + ConsoleColors.RESET.value);
+                if(squares[x][y].getPiece() != null && squares[x][y].getPiece().getColor().equals(PieceColor.WHITE)) {
+                    System.out.print(ConsoleColors.YELLOW.value + " " + squares[x][y].getPieceString() + " " +
+                            ConsoleColors.YELLOW.value);
+                } else {
+                    System.out.print(ConsoleColors.RESET.value + " " + squares[x][y].getPieceString() + " " +
+                            ConsoleColors.RESET.value);
+                }
             }
-            System.out.print("|");
+            System.out.print(ConsoleColors.RESET.value + "|" + ConsoleColors.RESET.value);
             System.out.print("\n");
             System.out.print("  ");
             for(int x = 0; x < 8; x++) {
