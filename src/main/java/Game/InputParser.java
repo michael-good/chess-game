@@ -2,22 +2,22 @@ package Game;
 
 import Exceptions.InvalidMoveException;
 
-public class MoveParser {
+public class InputParser {
 
     String move;
 
-    public MoveParser() {}
+    public InputParser() {}
 
     public Coordinate parseInputMove(String inputMove) throws InvalidMoveException{
         move = inputMove.toLowerCase();
-        isInputValid();
+        isInputMoveValid();
         int file = Character.getNumericValue(move.charAt(0)) - Character.getNumericValue('a');
         int rank = Character.getNumericValue(move.charAt(1));
-        isOuputValid(file, rank);
+        isOuputMoveValid(file, rank);
         return new Coordinate(file, rank - 1);
     }
 
-    private void isInputValid() throws InvalidMoveException {
+    private void isInputMoveValid() throws InvalidMoveException {
         if(move.length() != 2)
             throw new InvalidMoveException("Wrong input length...Please, try again");
         if(!Character.isLetter(move.charAt(0)))
@@ -26,7 +26,7 @@ public class MoveParser {
             throw new InvalidMoveException("Second character must be a number...Please, try again");
     }
 
-    private void isOuputValid(int file, int rank) throws InvalidMoveException {
+    private void isOuputMoveValid(int file, int rank) throws InvalidMoveException {
         if(file < 0 || file > 7)
             throw new InvalidMoveException("File must be a letter between 'A' and 'H'...Please, try again");
         if(rank < 1 || rank > 8)

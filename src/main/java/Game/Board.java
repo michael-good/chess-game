@@ -66,15 +66,7 @@ public class Board {
     }
 
     public void resetBoard() {
-        initializeBoardSquares();
-    }
-
-    public void movePiece(PieceColor color, Coordinate source, Coordinate dest) {
-
-    }
-
-    public boolean checkForCheck() {
-        return false;
+        initializeBoardSquares();       boolean isGameNotOver = true;
     }
 
     public void removePiece(Coordinate coordinate) {

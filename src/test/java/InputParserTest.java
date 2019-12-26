@@ -1,21 +1,21 @@
 
 import Exceptions.InvalidMoveException;
 import Game.Coordinate;
-import Game.MoveParser;
+import Game.InputParser;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
-public class MoveParserTest extends TestCase {
+public class InputParserTest extends TestCase {
 
-    public MoveParserTest(String str) {
+    public InputParserTest(String str) {
         super(str);
     }
 
     @Test
     public void validInputIsSendAndShouldPass() {
-        MoveParser parser = new MoveParser();
+        InputParser parser = new InputParser();
         String message = "A5";
         Coordinate coordinate = null;
 
@@ -30,7 +30,7 @@ public class MoveParserTest extends TestCase {
 
     @Test
     public void inputOfSizeOneShouldNotBeAccepted() {
-        MoveParser parser = new MoveParser();
+        InputParser parser = new InputParser();
         String message = "B";
 
         InvalidMoveException thrown = Assertions.assertThrows(InvalidMoveException.class, () -> {
@@ -41,7 +41,7 @@ public class MoveParserTest extends TestCase {
 
     @Test
     public void inputHasNotALetterInTheFirstPosition() {
-        MoveParser parser = new MoveParser();
+        InputParser parser = new InputParser();
         String message = "55";
 
         InvalidMoveException thrown = Assertions.assertThrows(InvalidMoveException.class, () -> {
@@ -52,7 +52,7 @@ public class MoveParserTest extends TestCase {
 
     @Test
     public void inputHasNotANumberInTheSecondPosition() {
-        MoveParser parser = new MoveParser();
+        InputParser parser = new InputParser();
         String message = "AB";
 
         InvalidMoveException thrown = Assertions.assertThrows(InvalidMoveException.class, () -> {
@@ -63,7 +63,7 @@ public class MoveParserTest extends TestCase {
 
     @Test
     public void inputHasFileOutOfRange() {
-        MoveParser parser = new MoveParser();
+        InputParser parser = new InputParser();
         String message = "J5";
 
         InvalidMoveException thrown = Assertions.assertThrows(InvalidMoveException.class, () -> {
@@ -74,7 +74,7 @@ public class MoveParserTest extends TestCase {
 
     @Test
     public void inputHasStrangeSymbolAsFileShouldNotPass() {
-        MoveParser parser = new MoveParser();
+        InputParser parser = new InputParser();
         String message = "*5";
 
         InvalidMoveException thrown = Assertions.assertThrows(InvalidMoveException.class, () -> {
@@ -85,7 +85,7 @@ public class MoveParserTest extends TestCase {
 
     @Test
     public void inputHasNumberInSecondPositionOutOfRangeUpperBound() {
-        MoveParser parser = new MoveParser();
+        InputParser parser = new InputParser();
         String message = "B9";
 
         InvalidMoveException thrown = Assertions.assertThrows(InvalidMoveException.class, () -> {
@@ -96,7 +96,7 @@ public class MoveParserTest extends TestCase {
 
     @Test
     public void inputHasNumberInSecondPositionOutOfRangeLowerBound() {
-        MoveParser parser = new MoveParser();
+        InputParser parser = new InputParser();
         String message = "C0";
 
         InvalidMoveException thrown = Assertions.assertThrows(InvalidMoveException.class, () -> {
@@ -107,14 +107,14 @@ public class MoveParserTest extends TestCase {
 
     public static TestSuite suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(new MoveParserTest("validInputIsSendAndShouldPass"));
-        suite.addTest(new MoveParserTest("inputOfSizeOneShouldNotBeAccepted"));
-        suite.addTest(new MoveParserTest("inputHasNotALetterInTheFirstPosition"));
-        suite.addTest(new MoveParserTest("inputHasNotANumberInTheSecondPosition"));
-        suite.addTest(new MoveParserTest("inputHasFileOutOfRange"));
-        suite.addTest(new MoveParserTest("inputHasStrangeSymbolAsFileShouldNotPass"));
-        suite.addTest(new MoveParserTest("inputHasNumberInSecondPositionOutOfRangeUpperBound"));
-        suite.addTest(new MoveParserTest("inputHasNumberInSecondPositionOutOfRangeLowerBound"));
+        suite.addTest(new InputParserTest("validInputIsSendAndShouldPass"));
+        suite.addTest(new InputParserTest("inputOfSizeOneShouldNotBeAccepted"));
+        suite.addTest(new InputParserTest("inputHasNotALetterInTheFirstPosition"));
+        suite.addTest(new InputParserTest("inputHasNotANumberInTheSecondPosition"));
+        suite.addTest(new InputParserTest("inputHasFileOutOfRange"));
+        suite.addTest(new InputParserTest("inputHasStrangeSymbolAsFileShouldNotPass"));
+        suite.addTest(new InputParserTest("inputHasNumberInSecondPositionOutOfRangeUpperBound"));
+        suite.addTest(new InputParserTest("inputHasNumberInSecondPositionOutOfRangeLowerBound"));
         return suite;
     }
 }

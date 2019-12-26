@@ -67,8 +67,8 @@ public class Game {
         }
     }
 
-    public Player announceWinner() {
-        return null;
+    public Player announceWinner(Player player) {
+        return player;
     }
 
 }
