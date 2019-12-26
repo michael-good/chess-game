@@ -55,6 +55,18 @@ public class Game {
         return turn;
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
+    public void passTurn() {
+        if(turn.equals(player1)) {
+            turn = player2;
+        } else {
+            turn = player1;
+        }
+    }
+
     public Player announceWinner() {
         return null;
     }

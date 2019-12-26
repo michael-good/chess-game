@@ -30,4 +30,9 @@ public class Rook extends Piece {
         }
         return path;
     }
+
+    @Override
+    public String toString() {
+        return "R";
+    }
 }

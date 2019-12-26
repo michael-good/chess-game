@@ -22,4 +22,9 @@ public class Knight extends Piece {
         return new Coordinate[]{source, dest};
     }
 
+    @Override
+    public String toString() {
+        return "C";
+    }
+
 }

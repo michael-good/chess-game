@@ -47,4 +47,9 @@ public class Queen extends Piece {
         }
         return path;
     }
+
+    @Override
+    public String toString() {
+        return "Q";
+    }
 }

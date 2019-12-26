@@ -84,4 +84,32 @@ public class Board {
     public Square getSquare(Coordinate coordinate) {
         return squares[coordinate.getFile()][coordinate.getRank()];
     }
+
+    public void printBoard(){
+        System.out.print("\n" + "  ");
+        for(int x = 0; x < 8; x++) {
+            System.out.print("----");
+        }
+        System.out.print("\n");
+        for (int y = 7; y >= 0; y--) {
+            System.out.print(Integer.toString(y + 1) + " ");
+            for(int x = 0; x < 8; x++) {
+                System.out.print("|");
+                System.out.print(" " + squares[x][y].getPieceString() + " ");
+            }
+            System.out.print("|");
+            System.out.print("\n");
+            System.out.print("  ");
+            for(int x = 0; x < 8; x++) {
+                System.out.print("----");
+            }
+            System.out.print("\n");
+        }
+        System.out.print(" ");
+        for(int x = 0; x < 8; x++) {
+            System.out.print("   ");
+            System.out.print((char)('A' + x));
+        }
+        System.out.print("\n");
+    }
 }

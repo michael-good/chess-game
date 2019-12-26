@@ -20,4 +20,9 @@ public class Coordinate {
     public boolean equals(Coordinate coord) {
         return this.file == coord.getFile() && this.rank == coord.getRank();
     }
+
+    @Override
+    public String toString() {
+        return "File: " + Integer.toString(file) + " ; " + "Rank: " + Integer.toString(rank);
+    }
 }

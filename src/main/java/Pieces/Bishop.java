@@ -29,4 +29,9 @@ public class Bishop extends Piece {
         }
         return path;
     }
+
+    @Override
+    public String toString() {
+        return "B";
+    }
 }

@@ -22,4 +22,8 @@ public class King extends Piece {
         return new Coordinate[]{source, dest};
     }
 
+    @Override
+    public String toString() {
+        return "K";
+    }
 }

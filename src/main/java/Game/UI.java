@@ -21,20 +21,21 @@ public class UI {
         namePlayer2 = in.nextLine();
         Game game = new Game(namePlayer1, namePlayer2);
         game.startGame();
-        System.out.println(game.getTurn().getName() + " starts playing! Make your move in the 'A5' format:");
-        move = in.nextLine();
+        System.out.println("\n" + game.getTurn().getName() + " starts playing! Make your move in the 'A5' format:");
         boolean isGameNotOver = true;
         while(isGameNotOver) {
             while(coordinate == null) {
+                move = in.nextLine();
                 try {
                     coordinate = inputParser.parseInputMove(move);
                 } catch (InvalidMoveException e) {
                     System.err.println(e.getMessage());
                 }
             }
-            System.out.println(coordinate.toString());
-            System.out.println(game.getTurn().getName() + " make your move in the 'A5' format:");
-            move = in.nextLine();
+            game.passTurn();
+            game.getBoard().printBoard();
+            System.out.println("\n" + game.getTurn().getName() + " make your move in the 'A5' format:");
+            coordinate = null;
         }
     }
 }

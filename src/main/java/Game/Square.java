@@ -35,4 +35,11 @@ public class Square {
         return coordinate;
     }
 
+    public String getPieceString() {
+        if (piece == null) {
+            return " ";
+        }
+        return piece.toString();
+    }
+
 }
